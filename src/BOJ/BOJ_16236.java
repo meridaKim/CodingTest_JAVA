@@ -1,80 +1,104 @@
 package BOJ;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.LinkedList;
-import java.util.StringTokenizer;
+import java.io.*;
 import java.util.*;
-/**
- * 아기 상어
- * 0: 빈 칸
- * 1, 2, 3, 4, 5, 6: 칸에 있는 물고기의 크기
- * 9: 아기 상어의 위치*/
-class Fish{
+class Fish {
+
     int x;
     int y;
-    int cost;
-    public Fish(int x, int y, int cost){
+    int dist;
+
+    Fish(int x, int y, int dist) {
         this.x = x;
         this.y = y;
-        this.cost = cost;
+        this.dist = dist;
     }
 }
-public class BOJ_16236 {
-    static int N;
-    static int [][] board;
-    static StringTokenizer st;
-    static Queue<Fish> que;
-    static int [] dx = {0,0,-1,-1};
-    static int [] dy = {1,-1,0,0};
-    static int amount;
-    static int maxY=Integer.MAX_VALUE;
-    static int maxX=Integer.MAX_VALUE;
-    public static void main(String []args)throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        N = Integer.parseInt(br.readLine());
-        board = new int[N][N];
-        que = new LinkedList<>();
-        amount =0;
 
-        for(int i=0; i<N; i++){
+public class BOJ_16236 {
+
+    static final int dx[] = {0, 0, 1, -1};
+    static final int dy[] = {1, -1, 0, 0};
+    static int[][] board;
+
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st;
+        Queue<Fish> q = new LinkedList<>();
+        int n = Integer.parseInt(br.readLine());
+        board = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
             st = new StringTokenizer(br.readLine());
-            for(int j =0; j<N; j++){
+            for (int j = 0; j < n; j++) {
                 board[i][j] = Integer.parseInt(st.nextToken());
-                if(board[i][j]==9) que.offer(new Fish(i,j,2));
-                //처음 상어의 크기==2
-                else if(board[i][j]!=0){
-                    amount++;
-                    maxY = Math.min(maxY,j);
-                    //가장 높은 곳 물고기 먼저
-                    maxX = Math.min(maxX,i);
-                    //높은 곳 물고기가 많다면 왼쪽 먼저
+                if (board[i][j] == 9) {
+                    q.add(new Fish(i, j, 0));
+                    board[i][j] = 0;
                 }
             }
         }
-    }
-    public static int bfs() {
-        while (!que.isEmpty()) {
-            Fish shark = que.poll();
-            for(int i =0; i<4; i++){
-                int nx = shark.x+dx[i];
-                int ny = shark.y+dy[i];
-                if(-1<nx&&nx<N&&-1<ny&&ny<N){
-                    if(board[nx][ny]<shark.cost&&board[nx][ny]!=0){
-                        board[nx][ny] = 0;
+
+        int size = 2;
+        int eat = 0;
+        int ans = 0;
+        while (true) {
+            ArrayList<Fish> eatFish = new ArrayList<>();
+            int[][] dist = new int[n][n];
+
+            while (!q.isEmpty()) {
+                Fish cur = q.poll();
+                int x = cur.x;
+                int y = cur.y;
+
+                for (int k = 0; k < 4; k++) {
+                    int nx = x + dx[k];
+                    int ny = y + dy[k];
+
+                    if (0 <= nx && nx < n && 0 <= ny && ny < n) {
+                        if (dist[nx][ny] == 0 && board[nx][ny] <= size) {
+                            dist[nx][ny] = dist[x][y] + 1;
+                            q.add(new Fish(nx, ny, dist[nx][ny]));
+                            if (1 <= board[nx][ny] && board[nx][ny] <= 6 && board[nx][ny] < size) {
+                                eatFish.add(new Fish(nx, ny, dist[nx][ny]));
+                            }
+                        }
                     }
                 }
             }
-            /*물고기는 new Fish(i,j,board[i][j])*/
+
+            if (eatFish.size() == 0) {
+                System.out.println(ans);
+                return;
+            }
+
+            Fish nowFish = eatFish.get(0);
+            for (int i = 1; i < eatFish.size(); i++) {
+                if (nowFish.dist > eatFish.get(i).dist) {
+                    nowFish = eatFish.get(i);
+                    //크기가 같은 물고기라면
+                } else if (nowFish.dist == eatFish.get(i).dist) {
+                    //위쪽 물고기
+                    if (nowFish.x > eatFish.get(i).x) {
+                        nowFish = eatFish.get(i);
+                    } else if (nowFish.x == eatFish.get(i).x) {
+                        //그 중에서도 왼쪽 물고기
+                        if (nowFish.y > eatFish.get(i).y) {
+                            nowFish = eatFish.get(i);
+                        }
+                    }
+                }
+            }
+            board[nowFish.x][nowFish.y] = 0;
+            ans += nowFish.dist;
+            eat++;
+            if (size == eat) {
+                size++;
+                eat = 0;
+            }
+            q.add(nowFish);
 
         }
 
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                if (board[i][j] == 0)
-                    return 0;
-            }
-        }return 1;
     }
+
 }
