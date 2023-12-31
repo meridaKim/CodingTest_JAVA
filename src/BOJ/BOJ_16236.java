@@ -56,14 +56,14 @@ public class BOJ_16236{
         int minTime = Integer.MAX_VALUE;
 
         while(!q.isEmpty()){
-            Fish a = q.poll();
+            Fish cur = q.poll();
             //최소 시간으로 물고기를 먹을 수 있는 시간을 넘으면 종료
-            if(a.time >= minTime)
+            if(cur.time >= minTime)
                 break;
 
             for(int i = 0; i<4; i++){
-                int dr = a.row + dR[i];
-                int dc = a.col + dC[i];
+                int dr = cur.row + dR[i];
+                int dc = cur.col + dC[i];
 
                 if(dr<0||dc<0||dr>=N||dc>=N)
                     continue;
@@ -77,17 +77,17 @@ public class BOJ_16236{
                     if(dr<minRow){
                         minRow = dr;
                         minCol = dc;
-                        minTime = a.time + 1;
+                        minTime = cur.time + 1;
                     }
                     else if(dr == minRow){
                         if(dc < minCol){
                             minCol = dc;
-                            minTime = a.time + 1;
+                            minTime = cur.time + 1;
                         }
                     }
                 }
 
-                q.offer(new Fish(dr, dc, a.time+1));
+                q.offer(new Fish(dr, dc, cur.time+1));
                 visited[dr][dc] = true;
             }
         }
