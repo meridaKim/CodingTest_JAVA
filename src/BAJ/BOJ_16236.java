@@ -1,4 +1,4 @@
-package BOJ;
+package BAJ;
 import java.io.*;
 import java.util.*;
 

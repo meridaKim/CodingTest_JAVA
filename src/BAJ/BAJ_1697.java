@@ -1,4 +1,4 @@
-package BOJ;
+package BAJ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.StringTokenizer;
 import java.util.*;
 /**
  * 숨바꼭질*/
-public class BOJ_1697 {
+public class BAJ_1697 {
 
     static int n;
     static int k;

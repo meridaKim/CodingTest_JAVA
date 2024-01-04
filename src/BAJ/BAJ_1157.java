@@ -1,7 +1,7 @@
-package BOJ;
+package BAJ;
 import java.io.*;
 import java.util.*;
-public class BOJ_1157 {
+public class BAJ_1157 {
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));

@@ -1,4 +1,4 @@
-package BOJ;
+package BAJ;
 
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -9,7 +9,7 @@ import java.io.BufferedReader;
 /**
 DFS와 BFS
  * */
-public class BOJ_1260 {
+public class BAJ_1260 {
     static int [][] linked;
     static int n;
     static int m;

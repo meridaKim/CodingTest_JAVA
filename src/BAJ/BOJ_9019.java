@@ -1,10 +1,9 @@
-package BOJ;
+package BAJ;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-import jdk.internal.util.xml.impl.Input;
 
 public class BOJ_9019 {
     static int testCase;

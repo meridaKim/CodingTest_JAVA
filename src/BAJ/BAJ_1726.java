@@ -1,4 +1,4 @@
-package BOJ;
+package BAJ;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.util.LinkedList;
@@ -6,7 +6,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 /**
  * 로봇*/
-public class BOJ_1726{
+public class BAJ_1726 {
 
     static int N, M;
     static int goal[];

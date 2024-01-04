@@ -1,9 +1,9 @@
-package BOJ;
+package BAJ;
 
 import java.io.*;
 import java.util.*;
 
-public class BOJ_1389 {
+public class BAJ_1389 {
 
     // input
     private static BufferedReader br;
