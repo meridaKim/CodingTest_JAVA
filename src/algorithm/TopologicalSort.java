@@ -4,9 +4,10 @@ import java.io.BufferedWriter;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
 import java.util.List;
+import java.util.Queue;
+import java.util.PriorityQueue;
+
 
 public class TopologicalSort {
     public static void main(String [] args)throws IOException {
@@ -34,7 +35,7 @@ public class TopologicalSort {
         countEdge[6]= 3;
         countEdge[8]= 1;
 
-        Queue<Integer> que = new LinkedList<>();
+        PriorityQueue<Integer> que = new PriorityQueue<>();
 
         for(int i =1; i<countEdge.length; i++){
             if(countEdge[i]==0){
@@ -56,5 +57,7 @@ public class TopologicalSort {
         }
         bw.flush();
     }
+    //9 19 10 15 7 27 48 21 3 41 6 1 14 35 16 22 8 47 44 24 12 23 5 2 29 34 43 49 17 51 46 20 38 42 52 26 4 28 40 45 18 53 36 50 25 31 32 33 11 13 30 37 39
+    //9 19 10 15 7 27 48 21 3 41 6 1 35 14 22 47 16 44 8 49 24 12 52 34 23 5 2 29 51 17 43 46 26 20 4 28 38 40 45 42 53 18 50 36 25 31 33 32 30 13 37 11 39
 
 }
