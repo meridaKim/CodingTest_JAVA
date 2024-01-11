@@ -1,25 +1,24 @@
-import java.io.*;
 import java.util.*;
-
+import java.io.*;
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String []args)throws IOException{
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuffer sb = new StringBuffer();
-        String s;
-        while ((s = br.readLine()) != null) {
-            int small = 0;  //소문자 개수
-            int capital = 0;   //대문자 개수
-            int number = 0;  //숫자 개수
-            int space = 0;  //공백 개수
-            for (int i = 0; i < s.length(); i++) {
-                char c = s.charAt(i);
-                if (c == ' ') space++;
-                if (Character.isUpperCase(c)) capital++;
-                if (Character.isLowerCase(c)) small++;
-                if (Character.isDigit(c)) number++;
+        String str;
+        while((str=br.readLine())!=null){
+            int lower =0;
+            int upper =0;
+            int num =0;
+            int blank =0;
+            for(int i =0; i<str.length(); i++){
+                char a = str.charAt(i);
+                if(a>='A'&&a<='Z') upper++;
+                if(a>='a'&&a<='z') lower++;
+                if(a>='0'&&a<='9') num++;
+                if(a==' ') blank++;
             }
-            sb.append(small + " " + capital + " " + number + " " + space + "\n");
+            sb.append(lower+" "+upper+" "+num+" "+blank+"\n");
         }
-        System.out.print(sb);
+        System.out.println(sb);
     }
 }
