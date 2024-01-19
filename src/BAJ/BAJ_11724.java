@@ -4,8 +4,9 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
-
-public class BOJ_11724 {
+/**
+ * 연결 개수의 요소*/
+public class BAJ_11724 {
 
     static int n;
     static int m;

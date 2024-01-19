@@ -2,7 +2,7 @@ package BAJ;
 import java.io.*;
 import java.util.*;
 
-public class BOJ_16236{
+public class BAJ_16236{
     static int N, sharkRow, sharkCol, shark = 2, time, eatCount = 0;
     static int[][] map;
     static int[] dR = {1, -1, 0, 0};
