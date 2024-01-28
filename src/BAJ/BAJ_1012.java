@@ -63,7 +63,7 @@ public class BAJ_1012 {
     }
     public static void bfs(int x, int y){
         que.add(new Lettuce(x, y));
-        visited[x][y] = true;
+        visited[y][x] = true;
         while(!que.isEmpty()){
              Lettuce now = que.poll();
              int [] dx = {0,0,-1,1};
