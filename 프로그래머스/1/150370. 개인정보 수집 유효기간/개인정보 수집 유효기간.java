@@ -18,8 +18,6 @@ class Solution {
                     int n = calculate(0,convert(now[1]),convert(now[2]));
                     end = end+year*12*28;
                     n = n+now_year*12*28;
-                    System.out.println(i+" year: "+year+" end : "+end);
-                    System.out.println("now_year: "+now_year+" n: "+n);
                     if(n>=end) list.add(i+1);
                 }
                
